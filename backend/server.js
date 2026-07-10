@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import uploadRoutes from './routes/uploadRoutes.js';
+import parserRoutes from './routes/parserRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 // Load environment configuration parameters
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Binds core API routing endpoints
 app.use('/api', uploadRoutes);
+app.use('/api', parserRoutes);
 
 // Backend diagnostics endpoint
 app.get('/health', (req, res) => {
