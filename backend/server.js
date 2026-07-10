@@ -5,6 +5,7 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import parserRoutes from './routes/parserRoutes.js';
 import ownerRoutes from './routes/ownerRoutes.js';
 import trainingRoutes from './routes/trainingRoutes.js';
+import analyzerRoutes from './routes/analyzerRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 // Load environment configuration parameters
@@ -25,6 +26,7 @@ app.use('/api', uploadRoutes);
 app.use('/api', parserRoutes);
 app.use('/api', ownerRoutes);
 app.use('/api', trainingRoutes);
+app.use('/api', analyzerRoutes);
 
 // Backend diagnostics endpoint
 app.get('/health', (req, res) => {
