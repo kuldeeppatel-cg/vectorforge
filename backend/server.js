@@ -2,7 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import uploadRoutes from './routes/uploadRoutes.js';
-import chatRoutes from './routes/chatRoutes.js';
+import parserRoutes from './routes/parserRoutes.js';
+import ownerRoutes from './routes/ownerRoutes.js';
+import trainingRoutes from './routes/trainingRoutes.js';
+import analyzerRoutes from './routes/analyzerRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 // Load environment configuration parameters
@@ -20,7 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Binds core API routing endpoints
 app.use('/api', uploadRoutes);
-app.use('/api', chatRoutes);
+app.use('/api', parserRoutes);
+app.use('/api', ownerRoutes);
+app.use('/api', trainingRoutes);
+app.use('/api', analyzerRoutes);
 
 // Backend diagnostics endpoint
 app.get('/health', (req, res) => {
