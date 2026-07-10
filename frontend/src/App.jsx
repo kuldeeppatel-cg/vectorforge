@@ -145,7 +145,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-md font-bold tracking-tight m-0 select-none flex items-center gap-1.5 leading-none">
-              Ditton <span className="text-[10px] font-medium text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md">Workspace</span>
+              Ditto <span className="text-[10px] font-medium text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md">Workspace</span>
             </h1>
             <p className="text-[10px] text-gray-400 dark:text-zinc-500 mt-0.5 font-medium leading-none">Digital Clone Studio v1.0.0</p>
           </div>

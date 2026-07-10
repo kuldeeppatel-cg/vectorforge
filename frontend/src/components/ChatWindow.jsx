@@ -30,7 +30,7 @@ export default function ChatWindow({
         <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-3xl mb-4 border border-emerald-500/20 shadow-lg shadow-emerald-500/5 animate-pulse">
           🤖
         </div>
-        <h2 className="text-lg font-bold mb-1.5 text-slate-900 dark:text-zinc-100">Ditton AI Workspace</h2>
+        <h2 className="text-lg font-bold mb-1.5 text-slate-900 dark:text-zinc-100">Ditto AI Workspace</h2>
         <p className="max-w-md text-xs leading-relaxed text-slate-400 dark:text-zinc-500">
           Select a chat persona from the sidebar to start conversing with their digital clone, or upload a WhatsApp chat log in the style panel to train a new one.
         </p>

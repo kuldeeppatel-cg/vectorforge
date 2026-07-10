@@ -1,4 +1,4 @@
-# Ditton | AI Digital Clone Workspace 🤖
+# Ditto | AI Digital Clone Workspace 🤖
 
 > **Build your own AI-powered digital clone that learns your texting style from your WhatsApp chat history and generates replies that sound like you.**
 
@@ -6,9 +6,9 @@
 
 ## 📌 Overview
 
-**Ditton** is an AI-powered digital clone workspace that creates a personalized chat assistant by analyzing a user's writing patterns from exported WhatsApp conversations. 
+**Ditto** is an AI-powered digital clone workspace that creates a personalized chat assistant by analyzing a user's writing patterns from exported WhatsApp conversations. 
 
-Rather than generating generic AI responses, Ditton mimics the user's natural communication habits—including tone, vocabulary, emojis, reply speed, average message length, punctuation, and common phrases. It is designed to assist busy professionals, creators, and teams in drafting replies that feel authentic and uniquely theirs.
+Rather than generating generic AI responses, Ditto mimics the user's natural communication habits—including tone, vocabulary, emojis, reply speed, average message length, punctuation, and common phrases. It is designed to assist busy professionals, creators, and teams in drafting replies that feel authentic and uniquely theirs.
 
 ---
 
@@ -43,7 +43,7 @@ User Uploads WhatsApp Chat (.txt)
  Prompt Builder & Local LLM (Llama 3.2 via Ollama)
             │
             ▼
- Ditton Workspace Chat Simulator
+ Ditto Workspace Chat Simulator
 ```
 
 ---
@@ -151,7 +151,7 @@ The workspace parses your files to calculate:
 Bro, free tonight?
 ```
 
-### Generated Ditton Clone Reply
+### Generated Ditto Clone Reply
 ```text
 literally born ready 🚀 let's check the logs 😂
 ```
@@ -160,7 +160,7 @@ literally born ready 🚀 let's check the logs 😂
 
 ## 🔒 Privacy & Local-First Philosophy
 
-* Ditton is built with a local-first design.
+* Ditto is built with a local-first design.
 * Uploaded logs are stored and processed locally.
 * Supports local LLM inference via Ollama, preventing your sensitive messages from leaking to third-party APIs.
 * Designed for educational, testing, and workspace assistance.
@@ -171,4 +171,4 @@ literally born ready 🚀 let's check the logs 😂
 
 Developed for educational and hackathon purposes.
 
-⭐ *If you like Ditton, consider giving it a star on GitHub!*
+⭐ *If you like Ditto, consider giving it a star on GitHub!*
