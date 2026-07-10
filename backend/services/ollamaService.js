@@ -10,9 +10,10 @@ const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.2:3b';
 /**
  * Interface service making request payloads to the local/remote Ollama model instance
  * @param {Array<Object>} messages - Array of chat logs: [ { role: 'user'|'assistant'|'system', content: '...' } ]
+ * @param {Object} options - Hyperparameters for temperature, presence_penalty, top_p
  * @returns {Promise<string>} The parsed string response text content from Llama
  */
-export const sendChatPrompt = async (messages) => {
+export const sendChatPrompt = async (messages, options = {}) => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30000); // Strict 30s timeout ceiling
 
@@ -29,7 +30,12 @@ export const sendChatPrompt = async (messages) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL,
       messages: messages,
-      stream: false // Strict requirement: disable stream processing
+      stream: false, // Strict requirement: disable stream processing
+      options: {
+        temperature: options.temperature ?? 0.7,
+        top_p: options.top_p ?? 0.9,
+        presence_penalty: options.presence_penalty ?? 0.0
+      }
     });
 
     const response = await fetch(OLLAMA_URL, {
