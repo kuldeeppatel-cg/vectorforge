@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { parseUploadedFile } from './parserService.js';
+import { sanitizeFilename } from '../utils/security.js';
 
 const SELECTIONS_FILE = './data/selections.json';
 
@@ -11,7 +12,6 @@ const readSelections = async () => {
     return JSON.parse(data || '{}');
   } catch (err) {
     if (err.code === 'ENOENT') {
-      // Auto-initialize directories and structure if missing
       await fs.mkdir(path.dirname(SELECTIONS_FILE), { recursive: true });
       await fs.writeFile(SELECTIONS_FILE, '{}', 'utf-8');
       return {};
@@ -20,9 +20,11 @@ const readSelections = async () => {
   }
 };
 
-// Helper to write selections to local flat database
+// Helper to write selections atomically to prevent database corruption
 const writeSelections = async (selections) => {
-  await fs.writeFile(SELECTIONS_FILE, JSON.stringify(selections, null, 2), 'utf-8');
+  const tempPath = `${SELECTIONS_FILE}.tmp`;
+  await fs.writeFile(tempPath, JSON.stringify(selections, null, 2), 'utf-8');
+  await fs.rename(tempPath, SELECTIONS_FILE);
 };
 
 /**
@@ -31,19 +33,21 @@ const writeSelections = async (selections) => {
  * @returns {Promise<Array<string>>} Distinct participants list
  */
 export const getChatParticipants = async (filename) => {
-  const messages = await parseUploadedFile(filename);
+  const name = sanitizeFilename(filename);
+  const messages = await parseUploadedFile(name);
   const participants = [...new Set(messages.map((m) => m.sender))];
   return participants;
 };
 
 /**
- * Validates and stores the owner selection for a chat log file
+ * Validates and stores the owner selection for a chat log file atomically
  * @param {string} filename - Stored chat log file name
  * @param {string} ownerName - Selected participant acting as "Me"
  * @returns {Promise<string>} The selected owner name
  */
 export const saveChatOwner = async (filename, ownerName) => {
-  const participants = await getChatParticipants(filename);
+  const name = sanitizeFilename(filename);
+  const participants = await getChatParticipants(name);
 
   if (!participants.includes(ownerName)) {
     const error = new Error(
@@ -54,7 +58,7 @@ export const saveChatOwner = async (filename, ownerName) => {
   }
 
   const selections = await readSelections();
-  selections[filename] = ownerName;
+  selections[name] = ownerName;
   await writeSelections(selections);
 
   return ownerName;
@@ -66,6 +70,7 @@ export const saveChatOwner = async (filename, ownerName) => {
  * @returns {Promise<string|null>} The owner name, or null if unregistered
  */
 export const getChatOwner = async (filename) => {
+  const name = sanitizeFilename(filename);
   const selections = await readSelections();
-  return selections[filename] || null;
+  return selections[name] || null;
 };
